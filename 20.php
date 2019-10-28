@@ -7,85 +7,41 @@
         color: #FC0;
       }
       input{
-        background: black;
+        background: none;
         border: 1px solid #fc0;
         color: #FC0;
       }
     </style>
   </head>
-  <body>
+  <body style="font-size: 20px">
     <?php
-      $nameErr = $emailErr = $genderErr = $websiteErr = "";
-      $name = $email = $gender = $comment = $website = "";
-      if($_SERVER["REQUEST_METHOD"]=="POST"){
-        if(empty($_POST["name"])){
-          $nameErr = "Imie wymagane";
-        }
-        else{
-          $name = test_input($_POST["name"]);
-        }
-        if(empty($_POST["email"])){
-          $emailErr = "Email wymagany";
-        }
-        else{
-          $email = test_input($_POST["email"]);
-        }
-        if(empty($_POST["gender"])){
-          $genderErr = "Gender wymagany";
-        }
-        else{
-          $gender = test_input($_POST["gender"]);
-        }
-        if(empty($_POST["website"])){
-          $websiteErr = "Strona wymagana";
-        }
-        else{
-          $website = test_input($_POST["website"]);
-        }
-        if(empty($_POST["comment"])){
-          $comment = "";
-        }
-        else{
-          $comment = test_input($_POST["comment"]);
-        }
+
+      $suma = 0;
+      for($i = 1; $i <= 100; $i++){
+        $suma += $i;
+        echo @"i= $i + suma = $suma <br/>";
       }
 
-      function test_input($data) {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
-      }
-     ?>
-     <h2>PHP Form Validation Example</h2>
-      <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-        Name: <input type="text" name="name"><span class="error">* <?php echo $nameErr;?></span>
-        <br><br>
-        E-mail: <input type="text" name="email"><span class="error">* <?php echo $emailErr;?></span>
-        <br><br>
-        Website: <input type="text" name="website"><span class="error">* <?php echo $websiteErr;?></span>
-        <br><br>
-        Comment: <textarea name="comment" rows="5" cols="40"></textarea>
-        <br><br>
-        Gender:
-        <input type="radio" name="gender" value="female">Female
-        <input type="radio" name="gender" value="male">Male
-        <input type="radio" name="gender" value="other">Other<span class="error">* <?php echo $genderErr;?></span>
-        <br><br>
-        <input type="submit" name="submit" value="Submit">
-      </form>
+      echo "Suma liczb od 1 do 100 daje: ";
+      echo $suma;
+      echo "<br/>";
+      echo "<br/>";
 
-      <?php
-      echo "<h2>Your Input:</h2>";
-      echo $name;
-      echo "<br>";
-      echo $email;
-      echo "<br>";
-      echo $website;
-      echo "<br>";
-      echo $comment;
-      echo "<br>";
-      echo $gender;
+      $sumak = 0;
+      $liczb = 0;
+
+      for($i = 1; $sumak < 100; $i++){
+        $sumak += $i;
+        $liczb++;
+        echo @"i= $i i + suma = $sumak <br/>";
+      }
+
+      echo "Ile liczb do przekroczenia 100 ";
+      echo $liczb;
+      echo " daje ";
+      echo $sumak;
+
+
       ?>
   </body>
 </html>
