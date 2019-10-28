@@ -15,15 +15,37 @@
   </head>
   <body>
     <?php
-    if(isset($_POST["name"]) && isset($_POST["password"])){
+    $good = false;
+    if(isset($_POST["user"]) && isset($_POST["pass"])){
+      /* Logowanie */
+      $file = fopen("zadankologin/loginy.txt","r") or die("Unable to open");
+        while(!feof($file)){
+          $line = fgets($file);
+          list($user, $pass) = explode(';', $line);
+          if(trim($user) == $_POST['user'] && trim($pass) == $_POST['pass']){
+              $good=true;
+              fclose($file);
+              break;
+          }
+      }
+      if($good){
+        echo 'Zalogowano pomyslnie';
+      }
+      else{
+        echo 'Niepoprawne dane';
+        $data = date('m/d/Y h:i:s a', time());
+        $error = fopen("zadankologin/error.txt","a") or die("Unable to open");
+        $txt =  "Nieudane logowanie! Ktos probowal sie zalogowac uzywajac danych: " . $_POST["user"] . " " . $_POST["pass"] . " o godzinie " . $data;
+        fwrite($error,$txt);
+        fclose($error);
+      }
 
     }
     else{
       print '
-        <br>Odczyt z pliku:
-        <form action="zadanko2.php" method="get">
+        <form action="kolejnezadanieAAAAAAA.php" method="post">
           Login: <input type="text" name="user">
-          Password: <input type="text" name="password">
+          Password: <input type="password" name="pass">
           <input type="submit" value="Wyslij">
         </form>
       ';
