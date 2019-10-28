@@ -11,6 +11,18 @@
         border: 1px solid #fc0;
         color: #FC0;
       }
+      a:link {
+        color: #FC0;
+      }
+      a:visited {
+        color: #FC0;
+      }
+      a:hover {
+        color: #FC5;
+      }
+      a:active {
+        color: #FC5;
+      }
     </style>
   </head>
   <body>
@@ -29,13 +41,13 @@
           }
       }
       if($good){
-        echo 'Zalogowano pomyslnie';
+        echo "<script>window.location = 'kolejnezadanieZALOGOWANO.php'</script>";
       }
       else{
         echo 'Niepoprawne dane';
         $data = date('m/d/Y h:i:s a', time());
         $error = fopen("zadankologin/error.txt","a") or die("Unable to open");
-        $txt =  "Nieudane logowanie! Ktos probowal sie zalogowac uzywajac danych: " . $_POST["user"] . " " . $_POST["pass"] . " o godzinie " . $data;
+        $txt =  "Nieudane logowanie! Ktos probowal sie zalogowac uzywajac danych: " . $_POST["user"] . " " . $_POST["pass"] . " o godzinie " . $data . "<br>";
         fwrite($error,$txt);
         fclose($error);
       }
@@ -47,6 +59,7 @@
           Login: <input type="text" name="user">
           Password: <input type="password" name="pass">
           <input type="submit" value="Wyslij">
+          <a href="kolejnezadanieREJESTRACJA.php">Rejestracja</a>
         </form>
       ';
     }
